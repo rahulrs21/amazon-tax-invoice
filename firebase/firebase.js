@@ -1,30 +1,24 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { getApp, getApps, initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// const firebaseConfig = {
-//   apiKey: "AIzaSyCH_hqdOZA46B_JcC25voDJcuE9EJiUgNA",
-//   authDomain: "tax-invoice---faza-home.firebaseapp.com",
-//   projectId: "tax-invoice---faza-home",
-//   storageBucket: "tax-invoice---faza-home.firebasestorage.app",
-//   messagingSenderId: "27096344604",
-//   appId: "1:27096344604:web:16dac32fbf1ccc0e7397d9"
-// };
-
+// Your web app's Firebase configuration using environment variables
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  storageBucket: "tax-invoice---faza-home.firebasestorage.app", // Updated to use the correct storage bucket
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
-
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// const app = initializeApp(firebaseConfig);
+
+// Initialize Firebase only once
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+
+export const storage = getStorage(app);
 
 export const db = getFirestore(app);

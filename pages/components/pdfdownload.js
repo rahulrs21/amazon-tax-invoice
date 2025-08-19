@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { FileText, MapPin, Calendar, Hash, Package, File } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const PDFDownload = ({ data, invoice }) => {
   const invoiceRef = useRef(null);
@@ -50,7 +51,7 @@ const PDFDownload = ({ data, invoice }) => {
   };
  
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "5px 20px" }}>
       <div
         ref={invoiceRef}
         style={{
@@ -68,7 +69,7 @@ const PDFDownload = ({ data, invoice }) => {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div>
               <Link href="https://www.fazahome.ae" target="_blank">
-                <img style={{ width: "120px" }} src="/Faza-Home-Logo.png" alt="logo" />
+                <Image style={{ width: "120px" }} src="/Faza-Home-Logo.png" alt="logo" />
               </Link>
               <p style={{ color: "#dbeafe", marginTop: "8px" }}>FAZA SANITARY WARE TR. LLC</p>
             </div>
@@ -164,7 +165,7 @@ const PDFDownload = ({ data, invoice }) => {
                       <div style={{ fontWeight: "500", color: "#1e293b", marginBottom: "4px" }}>{data?.productName}</div>
                     </td>
                     <td style={{ border: "1px solid #e5e7eb", padding: "16px", textAlign: "right", color: "#1e293b", fontWeight: "700" }}>
-                       {data?.unitPrice}
+                       {data?.unitPriceMain}
                     </td>
                     <td style={{ border: "1px solid #e5e7eb", padding: "16px", textAlign: "center", color: "#374151", fontWeight: "500" }}>
                       {data?.quantity}
@@ -219,7 +220,7 @@ const PDFDownload = ({ data, invoice }) => {
               <p style={{ color: "#374151", marginBottom: "5px", fontWeight: "600", zIndex: "1", position: "relative" }}>For FAZA SANITARY WARE TR. LLC</p>
               <p style={{ fontSize: "0.95rem", color: "#64748b", zIndex: "1", position: "relative" }}>Authorized Signatory</p>
               <div style={{ marginTop: "-10px", display: "flex", alignItems: "center", justifyContent: "center", zIndex: "0", position: "relative" }}>
-                <img style={{ width: "200px", height: "auto" }} src="signature.jpg" alt="signature" />
+                <Image style={{ width: "200px", height: "auto" }} src="signature.jpg" alt="signature" />
               </div>
             </div>
           </div>
@@ -229,7 +230,7 @@ const PDFDownload = ({ data, invoice }) => {
             <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1e293b", marginBottom: "8px", textAlign: "center" }}>
               Our Brand Partners
             </h3>
-            <img src="Footer-Logos.jpg" alt="all_brands_logo" style={{ width: "100%", margin: "auto", display: "block" }} />
+            <Image src="Footer-Logos.jpg" alt="all_brands_logo" style={{ width: "100%", margin: "auto", display: "block" }} />
           </div>
         </div>
 
@@ -242,13 +243,14 @@ const PDFDownload = ({ data, invoice }) => {
 
       </div>
 
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "-20px" }}>
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "-20px", paddingbottom: "40px" }}>
         <button
           onClick={downloadPDF}
           style={{
             background: "#2563eb",
             color: "#fff",
-            marginTop: "40px",
+             
+            marginTop: "10px",
             fontWeight: "600",
             padding: "12px 32px",
             borderRadius: "12px",
