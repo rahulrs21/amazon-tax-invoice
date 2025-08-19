@@ -47,7 +47,7 @@ const PDFDownload = ({ data, invoice }) => {
     const yOffset = margin + (maxHeight - imgHeight) / 2;
 
     pdf.addImage(imgData, "JPEG", xOffset, yOffset, imgWidth, imgHeight);
-    pdf.save(`Amazon Tax Invoice - ${invoice}`);
+    pdf.save(`${data?.customerName} - Amazon Tax Invoice - ${invoice}`);
   };
  
   return (
@@ -69,7 +69,7 @@ const PDFDownload = ({ data, invoice }) => {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div>
               <Link href="https://www.fazahome.ae" target="_blank">
-                <Image style={{ width: "120px" }} src="/Faza-Home-Logo.png" alt="logo" />
+                <Image width={120} height={120}  src="/Faza-Home-Logo.png" alt="logo" />
               </Link>
               <p style={{ color: "#dbeafe", marginTop: "8px" }}>FAZA SANITARY WARE TR. LLC</p>
             </div>
@@ -220,7 +220,7 @@ const PDFDownload = ({ data, invoice }) => {
               <p style={{ color: "#374151", marginBottom: "5px", fontWeight: "600", zIndex: "1", position: "relative" }}>For FAZA SANITARY WARE TR. LLC</p>
               <p style={{ fontSize: "0.95rem", color: "#64748b", zIndex: "1", position: "relative" }}>Authorized Signatory</p>
               <div style={{ marginTop: "-10px", display: "flex", alignItems: "center", justifyContent: "center", zIndex: "0", position: "relative" }}>
-                <Image style={{ width: "200px", height: "auto" }} src="signature.jpg" alt="signature" />
+                <Image width={200} height={100} src="/signature.jpg" alt="signature" />
               </div>
             </div>
           </div>
@@ -230,7 +230,7 @@ const PDFDownload = ({ data, invoice }) => {
             <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1e293b", marginBottom: "8px", textAlign: "center" }}>
               Our Brand Partners
             </h3>
-            <Image src="Footer-Logos.jpg" alt="all_brands_logo" style={{ width: "100%", margin: "auto", display: "block" }} />
+            <Image width={1200} height={90} src="/Footer-Logos.jpg" alt="all_brands_logo" style={{ margin: "auto", display: "block" }} />
           </div>
         </div>
 
