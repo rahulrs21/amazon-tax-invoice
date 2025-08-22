@@ -47,7 +47,7 @@ const PDFDownload = ({ data, invoice }) => {
     const yOffset = margin + (maxHeight - imgHeight) / 2;
 
     pdf.addImage(imgData, "JPEG", xOffset, yOffset, imgWidth, imgHeight);
-    pdf.save(`${data?.customerName} - Amazon Tax Invoice - ${invoice}`);
+    pdf.save(`${invoice} - ${data?.customerName} - Amazon Tax Invoice`);
   };
  
   return (
