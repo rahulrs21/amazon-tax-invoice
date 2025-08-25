@@ -14,7 +14,7 @@ const PDFDownload = ({ data, invoice }) => {
 
     // Capture screenshot with reduced scale
     const canvas = await html2canvas(invoiceRef.current, {
-      scale: 1.25, // Lower than 2 to reduce size
+      scale: 1.25, // Lower than 2 to reduce size 
       useCORS: true // Helps load external images if any
     });
 
@@ -26,6 +26,8 @@ const PDFDownload = ({ data, invoice }) => {
       unit: "mm",
       format: "a4",
     });
+
+   
 
     const margin = 10;
     const pageWidth = pdf.internal.pageSize.getWidth();
@@ -47,9 +49,50 @@ const PDFDownload = ({ data, invoice }) => {
     const yOffset = margin + (maxHeight - imgHeight) / 2;
 
     pdf.addImage(imgData, "JPEG", xOffset, yOffset, imgWidth, imgHeight);
-    pdf.save(`${invoice} - ${data?.customerName} - Amazon Tax Invoice`);
+
+
+
+
+   // ✅ Try File System Access API
+  if (window.showSaveFilePicker) {
+    try {
+      const pdfBlob = pdf.output("blob");
+
+      const fileHandle = await window.showSaveFilePicker({
+        suggestedName: `${invoice} - ${data?.customerName} - Amazon Tax Invoice.pdf`,
+        types: [
+          {
+            description: "PDF Document",
+            accept: { "application/pdf": [".pdf"] },
+          },
+        ],
+      });
+
+      const writable = await fileHandle.createWritable();
+      await writable.write(pdfBlob);
+      await writable.close();
+
+      console.log("✅ File saved successfully!");
+    } catch (err) {
+      if (err.name === "AbortError") {
+        console.log("🟡 User canceled the save dialog.");
+      } else {
+        console.error("❌ Error saving file:", err);
+      }
+    }
+  } else {
+    // ❌ Fallback
+    pdf.save(`${invoice} - ${data?.customerName} - Amazon Tax Invoice.pdf`);
+  }
+
+
+
+
+    // pdf.save(`${invoice} - ${data?.customerName} - Amazon Tax Invoice`);
+
+
   };
- 
+
   return (
     <div style={{ padding: "5px 20px" }}>
       <div
@@ -69,7 +112,7 @@ const PDFDownload = ({ data, invoice }) => {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div>
               <Link href="https://www.fazahome.ae" target="_blank">
-                <Image width={120} height={120}  src="/Faza-Home-Logo.png" alt="logo" />
+                <Image width={120} height={120} src="/Faza-Home-Logo.png" alt="logo" />
               </Link>
               <p style={{ color: "#dbeafe", marginTop: "8px" }}>FAZA SANITARY WARE TR. LLC</p>
             </div>
@@ -165,14 +208,14 @@ const PDFDownload = ({ data, invoice }) => {
                       <div style={{ fontWeight: "500", color: "#1e293b", marginBottom: "4px" }}>{data?.productName}</div>
                     </td>
                     <td style={{ border: "1px solid #e5e7eb", padding: "16px", textAlign: "right", color: "#1e293b", fontWeight: "700" }}>
-                       {data?.unitPriceMain}
+                      {data?.unitPriceMain}
                     </td>
                     <td style={{ border: "1px solid #e5e7eb", padding: "16px", textAlign: "center", color: "#374151", fontWeight: "500" }}>
                       {data?.quantity}
                     </td>
 
                     <td style={{ border: "1px solid #e5e7eb", padding: "16px", textAlign: "right", color: "#1e293b", fontWeight: "700" }}>
-                       {data?.subTotal}
+                      {data?.subTotal}
                     </td>
                   </tr>
                 </tbody>
@@ -249,7 +292,7 @@ const PDFDownload = ({ data, invoice }) => {
           style={{
             background: "#2563eb",
             color: "#fff",
-             
+
             marginTop: "10px",
             fontWeight: "600",
             padding: "12px 32px",
