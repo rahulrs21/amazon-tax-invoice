@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroui/accordion": "^2.2.21",
+    "@heroui/react": "^2.8.2",
     "canvas-confetti": "^1.9.3",
     "db": "^6.0.3",
     "firebase": "^12.0.0",
     "firebase-admin": "^13.4.0",
+    "framer-motion": "^12.23.12",
     "fs": "^0.0.1-security",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.1",

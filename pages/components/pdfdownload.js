@@ -306,7 +306,7 @@ const PDFDownload = ({ data, invoice }) => {
           }}
         >
           <Package style={{ width: "20px", height: "20px" }} />
-          Download PDF
+          Download Invoice
         </button>
       </div>
 

@@ -1,4 +1,5 @@
 import confetti from "canvas-confetti";
+import { RotateCw } from "lucide-react";
 import { useState } from "react";
 
 
@@ -58,8 +59,8 @@ function LastUploadedFile({ lastPdf, onExtractedDetails }) {
                 </svg>
                 <h2 className="text-md font-bold text-gray-800">Last Uploaded PDF</h2>
             </div>
-            <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-200 rounded-xl shadow-lg">
+            <div className="overflow-x-auto rounded-lg shadow-sm">
+                <table className="min-w-full bg-white border border-gray-200 shadow-lg">
                     <thead>
                         <tr>
                             <th className="px-4 py-2 text-left font-semibold text-gray-700">Invoice Number</th>
@@ -84,8 +85,9 @@ function LastUploadedFile({ lastPdf, onExtractedDetails }) {
                             </td>
                             <td className="px-4 py-2">{lastPdf.createdAt}</td>
                             <td className="px-4 py-2">
+                                
 
-                                <button onClick={() => handleGeneratePDF(lastPdf.pdfUrl)} className="text-white bg-blue-500 border-0 py-1 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg cursor-pointer">{loading ? "Processing..." : "View"}</button>
+                                <button onClick={() => handleGeneratePDF(lastPdf.pdfUrl)} className="text-white bg-blue-500 border-0 py-1 px-5 focus:outline-none hover:bg-blue-600 rounded text-lg cursor-pointer">{loading ? ( <div className="flex justify-center items-center">Processing <RotateCw className='h-5 w-5 ml-2 text-white transition-transform duration-500 animate-spin' /></div>  )  : "View"}</button>
 
                                 <p>{status}</p>
 
