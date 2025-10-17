@@ -1,5 +1,4 @@
-import confetti from "canvas-confetti";
-import { RotateCw } from "lucide-react";
+import confetti from "canvas-confetti"; 
 import { useState } from "react";
 import { LoaderIcon, RotateCw } from "lucide-react";
 
