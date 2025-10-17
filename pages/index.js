@@ -10,7 +10,7 @@ import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import LastUploadedFile from "./components/lastUploadedFile";
 import confetti from "canvas-confetti";
 import { motion } from 'framer-motion';
-import { RotateCw } from "lucide-react";
+import { LoaderIcon, RotateCw } from "lucide-react";
 import Image from "next/image";
 import AnimatedBackground from "./components/AnimatedBg";
 
@@ -255,23 +255,13 @@ export default function Home() {
         )}
 
 
-        {/* <div className="  grid grid-cols-3 gap-1 w-12 mx-auto -mt-3 ">
-          {[0, 1, 2].map((i) => (
-            <motion.div
-              key={i}
-              className="h-2 bg-blue-400 rounded-full"
-              animate={!loading ? {
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 1, 0.3]
-              } : {}}
-              transition={{
-                duration: 1,
-                repeat: Infinity,
-                delay: i * 0.2
-              }}
-            />
-          ))}
-        </div> */}
+       {loading && (
+
+          <div className="mt-5 flex justify-center items-center">
+            {`Generating PDF`}
+            <LoaderIcon className={`ml-2 inline-block animate-spin `} />
+          </div>
+        )}
 
 
 
