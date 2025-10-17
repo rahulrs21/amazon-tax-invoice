@@ -101,7 +101,7 @@ function LastUploadedFile({ lastPdf, onExtractedDetails }) {
 
             {loading && (
                 
-                    <div className="flex justify-center items-center">
+                    <div className="mt-5 flex justify-center items-center">
                         {`Generating PDF`}
                         <LoaderIcon className={`ml-2 inline-block animate-spin `} />
                     </div>
